@@ -1,59 +1,145 @@
-# Neural relational inference for interacting systems
+# NRI-Modified: Neural Relational Inference
 
-This repository contains the official PyTorch implementation of:
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/release/python-370/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-1.0+-orange.svg)](https://pytorch.org/)
 
-**Neural relational inference for interacting systems.**  
-Thomas Kipf*, Ethan Fetaya*, Kuan-Chieh Wang, Max Welling, Richard Zemel.  
-https://arxiv.org/abs/1802.04687  (*: equal contribution)
+A modified implementation of Neural Relational Inference (NRI) for dynamic system modeling and analysis. This repository contains enhancements and modifications to the original NRI framework for improved performance and additional functionality.
 
 ![Neural Relational Inference (NRI)](nri.png)
 
-**Abstract:** Interacting systems are prevalent in nature, from dynamical systems in physics to complex societal dynamics. The interplay of components can give rise to complex behavior, which can often be explained using a simple model of the system's constituent parts. In this work, we introduce the neural relational inference (NRI) model: an unsupervised model that learns to infer interactions while simultaneously learning the dynamics purely from observational data. Our model takes the form of a variational auto-encoder, in which the latent code represents the underlying interaction graph and the reconstruction is based on graph neural networks. In experiments on simulated physical systems, we show that our NRI model can accurately recover ground-truth interactions in an unsupervised manner. We further demonstrate that we can find an interpretable structure and predict complex dynamics in real motion capture and sports tracking data.
+## 🚀 Features
 
-### Requirements
-* Pytorch 0.2 (0.3 breaks simulation decoder)
-* Python 2.7 or 3.6
+- **Enhanced NRI Implementation**: Modified neural relational inference with improved training dynamics
+- **Trajectory Visualization**: Advanced visualization tools for system trajectories
+- **Custom Performance Analysis**: Tools for analyzing model performance and behavior
+- **Flexible Dataset Generation**: Enhanced synthetic dataset generation capabilities
+- **Comprehensive Logging**: Detailed experiment tracking and logging system
 
-### Data generation
+## 📋 Requirements
 
-To replicate the experiments on simulated physical data, first generate training, validation and test data by running:
+- Python 3.7+
+- PyTorch 1.0+
+- NumPy
+- Matplotlib
+- NetworkX
+- Other dependencies listed in `requirements.txt`
 
+## 🛠️ Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/mrutyunjaykumarrao/NRI-Modified.git
+cd NRI-Modified
 ```
+
+2. Create a virtual environment:
+```bash
+python -m venv nri-env
+source nri-env/bin/activate  # On Windows: nri-env\Scripts\activate
+```
+
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+## 🎯 Usage
+
+### Training the Model
+
+```bash
+python train.py --epochs 500 --lr 0.0005 --hidden 256
+```
+
+### Generating Synthetic Data
+
+```bash
 cd data
 python generate_dataset.py
 ```
 This generates the springs dataset, use `--simulation charged` for charged particles.
 
-Note: Make sure to use the same preprocessing and evaluation scripts (check the loss function as well) as in our code release to get comparable results.
+### Visualizing Trajectories
 
-### Run experiments
+```bash
+python visualize_trajectory.py --load-folder logs/your_experiment_folder
+```
 
-From the project's root folder, simply run
-```
-python train.py
-```
-to train a Neural Relational Inference (NRI) model on the springs dataset. You can specify a different dataset by modifying the `suffix` argument: `--suffix charged5` will run the model on the charged particle simulation with 5 particles (if it has been generated).
+### Performance Analysis
 
-To train the encoder or decoder separately, run 
+```bash
+python perform_lige.py --model-path logs/your_experiment_folder
+```
 
-```
-python train_enc.py
-```
-or
+### Training Options
 
-```
-python train_dec.py
-```
-respectively. We provide a number of training options which are documented in the respective training files.
+To train the encoder or decoder separately:
 
-Additionally, we provide code for an LSTM baseline (denoted *LSTM (joint)* in the paper), which you can run as follows:
+```bash
+python train_enc.py  # Train encoder only
+python train_dec.py  # Train decoder only
 ```
+
+### LSTM Baseline
+
+Run the LSTM baseline (denoted *LSTM (joint)* in the original paper):
+```bash
 python lstm_baseline.py
 ```
 
-### Cite
-If you make use of this code in your own work, please cite our paper:
+## 📁 Project Structure
+
 ```
+NRI-Modified/
+├── data/                      # Data generation and processing
+│   ├── generate_dataset.py    # Synthetic dataset generation
+│   └── synthetic_sim.py       # Simulation utilities
+├── logs/                      # Experiment logs and saved models
+├── modules.py                 # Core neural network modules
+├── train.py                   # Main training script
+├── utils.py                   # Utility functions
+├── visualize_trajectory.py    # Visualization tools
+├── perform_lige.py           # Performance analysis
+└── README.md                 # This file
+```
+
+## 🔬 Experiments
+
+The `logs/` directory contains various experiment runs with different configurations:
+- Model checkpoints (encoder.pt, decoder.pt)
+- Training logs
+- Experiment metadata
+
+## 👥 Collaborators
+
+- [@mrutyunjaykumarrao](https://github.com/mrutyunjaykumarrao) - Project Lead
+- [@Nischay23](https://github.com/Nischay23) - Collaborator
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+This work is based on the original Neural Relational Inference implementation:
+
+**Neural relational inference for interacting systems.**  
+Thomas Kipf*, Ethan Fetaya*, Kuan-Chieh Wang, Max Welling, Richard Zemel.  
+https://arxiv.org/abs/1802.04687  (*: equal contribution)
+
+## 📚 Citation
+
+If you use this code in your research, please cite both this modified version and the original work:
+
+```bibtex
+@misc{nri-modified,
+  title={NRI-Modified: Enhanced Neural Relational Inference},
+  author={Mrutyunjay Kumar Rao and Nischay},
+  year={2025},
+  url={https://github.com/mrutyunjaykumarrao/NRI-Modified}
+}
+
 @article{kipf2018neural,
   title={Neural Relational Inference for Interacting Systems},
   author={Kipf, Thomas and Fetaya, Ethan and Wang, Kuan-Chieh and Welling, Max and Zemel, Richard},
@@ -61,3 +147,7 @@ If you make use of this code in your own work, please cite our paper:
   year={2018}
 }
 ```
+
+---
+
+**Note**: This is a modified version of the original NRI implementation. For the original work, please refer to the [original repository](https://github.com/ethanfetaya/NRI).
