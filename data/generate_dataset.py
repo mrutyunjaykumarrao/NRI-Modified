@@ -27,7 +27,7 @@ args = parser.parse_args()
 
 if args.simulation == 'springs':
     sim = SpringSim(noise_var=0.0, n_balls=args.n_balls)
-    suffix = '_springs'
+    suffix = 'springs'
 elif args.simulation == 'charged':
     sim = ChargedParticlesSim(noise_var=0.0, n_balls=args.n_balls)
     suffix = '_charged'
