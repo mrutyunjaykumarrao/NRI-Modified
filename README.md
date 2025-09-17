@@ -11,7 +11,10 @@ A modified implementation of Neural Relational Inference (NRI) for dynamic syste
 ## 🚀 Features
 
 - **Enhanced NRI Implementation**: Modified neural relational inference with improved training dynamics
-- **Trajectory Visualization**: Advanced visualization tools for system trajectories
+- **🎯 FSCR Integration**: Formation Stability Coefficient Reranking for improved interaction prediction
+- **📊 Advanced Stability Metrics**: Spatial compactness, velocity coherence, and temporal consistency analysis
+- **🔄 Intelligent Reranking**: Reorder predictions based on formation stability principles  
+- **Trajectory Visualization**: Advanced visualization tools for system trajectories with stability overlays
 - **Custom Performance Analysis**: Tools for analyzing model performance and behavior
 - **Flexible Dataset Generation**: Enhanced synthetic dataset generation capabilities
 - **Comprehensive Logging**: Detailed experiment tracking and logging system
@@ -66,10 +69,22 @@ This generates the springs dataset, use `--simulation charged` for charged parti
 python visualize_trajectory.py --load-folder logs/your_experiment_folder
 ```
 
-### Performance Analysis
+### Performance Analysis with FSCR
 
 ```bash
 python perform_lige.py --model-path logs/your_experiment_folder
+```
+
+This now includes Formation Stability Coefficient Reranking (FSCR) analysis:
+- Original NRI predictions
+- FSCR reranked predictions  
+- Comprehensive stability metrics
+- Visual comparison of results
+
+### FSCR Testing and Validation
+
+```bash
+python test_fscr.py
 ```
 
 ### Training Options
@@ -99,8 +114,12 @@ NRI-Modified/
 ├── modules.py                 # Core neural network modules
 ├── train.py                   # Main training script
 ├── utils.py                   # Utility functions
+├── fscr.py                    # 🎯 Formation Stability Coefficient Reranking
+├── fscr_integration.py        # FSCR integration with NRI framework
+├── test_fscr.py              # FSCR testing and validation suite
 ├── visualize_trajectory.py    # Visualization tools
-├── perform_lige.py           # Performance analysis
+├── perform_lige.py           # Performance analysis with FSCR
+├── FSCR_README.md            # Detailed FSCR documentation
 └── README.md                 # This file
 ```
 
